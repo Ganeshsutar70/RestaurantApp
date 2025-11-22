@@ -1,0 +1,46 @@
+RestaurantApp/
+│
+├── RestaurantApp.sln
+│
+├── RestaurantApp.API/                 # Main Web API Project
+│   ├── Controllers/                   # All API controllers
+│   │   ├── MenuController.cs
+│   │   ├── OrderController.cs
+│   │   ├── ReservationController.cs
+│   │   └── ContactController.cs
+│   │
+│   ├── Models/                        # Data models (DB tables)
+│   │   ├── MenuItem.cs
+│   │   ├── Order.cs
+│   │   ├── OrderItem.cs
+│   │   ├── Reservation.cs
+│   │   └── Customer.cs
+│   │
+│   ├── DTOs/                          # Data transfer objects (for APIs)
+│   │   ├── MenuItemDto.cs
+│   │   ├── OrderDto.cs
+│   │   └── ReservationDto.cs
+│   │
+│   ├── Data/                          # EF Core context and seeding
+│   │   ├── RestaurantContext.cs
+│   │   └── DbInitializer.cs
+│   │
+│   ├── Repositories/                  # Data access layer
+│   │   ├── IRepository.cs
+│   │   ├── Repository.cs
+│   │   ├── MenuRepository.cs
+│   │   └── OrderRepository.cs
+│   │
+│   ├── Services/                      # Business logic layer
+│   │   ├── MenuService.cs
+│   │   ├── OrderService.cs
+│   │   └── ReservationService.cs
+│   │
+│   ├── appsettings.json
+│   ├── Program.cs
+│   └── RestaurantApp.API.csproj
+│
+└── RestaurantApp.Frontend/            # (Optional: React or Razor frontend)
+    ├── package.json
+    ├── src/
+    └── public/
