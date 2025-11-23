@@ -150,6 +150,7 @@
 /home/hellion/Projects/DotNet/RestaurantApp/RestaurantApp.API/obj/Debug/net9.0/RestaurantApp.API.csproj.CoreCompileInputs.cache
 /home/hellion/Projects/DotNet/RestaurantApp/RestaurantApp.API/obj/Debug/net9.0/RestaurantApp.API.MvcApplicationPartsAssemblyInfo.cs
 /home/hellion/Projects/DotNet/RestaurantApp/RestaurantApp.API/obj/Debug/net9.0/RestaurantApp.API.MvcApplicationPartsAssemblyInfo.cache
+/home/hellion/Projects/DotNet/RestaurantApp/RestaurantApp.API/obj/Debug/net9.0/RestaurantApp.API.sourcelink.json
 /home/hellion/Projects/DotNet/RestaurantApp/RestaurantApp.API/obj/Debug/net9.0/scopedcss/bundle/RestaurantApp.API.styles.css
 /home/hellion/Projects/DotNet/RestaurantApp/RestaurantApp.API/obj/Debug/net9.0/staticwebassets.build.json
 /home/hellion/Projects/DotNet/RestaurantApp/RestaurantApp.API/obj/Debug/net9.0/staticwebassets.development.json
