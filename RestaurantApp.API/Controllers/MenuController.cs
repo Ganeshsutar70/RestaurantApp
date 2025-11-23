@@ -21,7 +21,7 @@ namespace RestaurantApp.API.Controllers
             _repository = repository;
             _context = context;
         }
-        [HttpPost("AddMenu")]
+        [HttpPost("addmenu")]
         public async Task<IActionResult> AddMenu([FromForm] MenuItemDto dto)
         {
 
@@ -51,7 +51,9 @@ namespace RestaurantApp.API.Controllers
                 Price = dto.Price!.Value,
                 Image = imageBytes,
                 ImageContentType = contentType,
-                ImageFileName = fileName
+                ImageFileName = fileName,
+                FoodType = dto.FoodType,
+                Category = dto.Category
             };
 
             // _context.MenuItems.Add(menuItem);
@@ -61,7 +63,32 @@ namespace RestaurantApp.API.Controllers
             return Ok(new { message = "Menu item added successfully!", menuItem.Id });
        
         }
-        [HttpGet]
+
+        [HttpPut("updatemenu/{id}")]
+        public async Task<IActionResult> UpdateMenu(int id, [FromForm] MenuItemDto dto)
+        {
+            var existingItem = await _repository.GetByIdAsync(id);
+            if (existingItem == null)
+                return NotFound("Menu item not found.");    
+            existingItem.Name = dto.Name ?? existingItem.Name;
+            existingItem.Description = dto.Description ?? existingItem.Description;
+            existingItem.FoodType = dto.FoodType ?? existingItem.FoodType;
+            existingItem.Category = dto.Category ?? existingItem.Category;
+            if (dto.Price.HasValue)
+                existingItem.Price = dto.Price.Value;
+            if (dto.Image != null)
+            {
+                using var ms = new MemoryStream();
+                await dto.Image.CopyToAsync(ms);
+                existingItem.Image = ms.ToArray();
+                existingItem.ImageContentType = dto.Image.ContentType;
+                existingItem.ImageFileName = dto.Image.FileName;
+            }
+            await _repository.UpdateAsync(existingItem);
+            return Ok(new { message = "Menu item updated successfully!" });
+        }
+
+        [HttpGet("getmenus")]
         public async Task<IActionResult> GetAll()
         {
             var items = await _repository.GetAllAsync();
@@ -97,6 +124,20 @@ namespace RestaurantApp.API.Controllers
         {
             await _repository.DeleteAsync(id);
             return NoContent();
+        }
+        [HttpGet("foodtype/{type}")]
+        public async Task<IActionResult> GetMenusByType(string type)
+        {
+            var item =  _context.MenuItems.Where(x => x.FoodType.ToLower() == type.ToLower());
+            if (item == null) return NotFound();
+            return Ok(item);            
+        }
+        [HttpGet("category/{categoryName}")]
+        public async Task<IActionResult> GetMenusByCategory(string categoryName)
+        {
+            var item =  _context.MenuItems.Where(x => x.Category.ToLower() == categoryName.ToLower());
+            if (item == null) return NotFound();
+            return Ok(item);            
         }
     }
 }
