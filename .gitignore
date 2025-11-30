@@ -1,0 +1,4 @@
+# Secrets
+RestaurantApp.API/.env
+RestaurantApp.API/bin/
+RestaurantApp.API/obj/
